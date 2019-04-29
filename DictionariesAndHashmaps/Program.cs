@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Console = System.Diagnostics.Debug;
 
 namespace DictionariesAndHashmaps
@@ -65,5 +66,57 @@ namespace DictionariesAndHashmaps
 
             return countTriples;
         }
+
+
+        // Complete the freqQuery function below.
+        public static List<int> freqQuery(List<int[]> queries)
+        {
+            List<int> resultArray = new List<int>();
+            List<int> output = new List<int>();
+            for (int i=0;i<queries.Count;i++)
+            {
+                //switch 1,2,3
+                switch(queries[i][0])
+                {
+                    case 1:
+                        {
+                            resultArray.Add(queries[i][1]);
+                            break;
+                        }
+                    case 2:
+                        {
+                            if (resultArray.Contains(queries[i][1]))
+                                resultArray.Remove(queries[i][1]);
+                            break;
+                        }
+                    case 3:
+                        {
+                            var intCount =  from values in resultArray group values by values into g
+                                            select new { g.Key, Count = g.Count() };
+
+                            //foreach (var item in intCount)
+                            //{
+                            //    if (item.Count == queries[i][1])
+                            //    {
+                            //        flag = true;
+                            //        break;
+                            //    }
+                            //}
+                            int cnt = intCount.Take(intCount.Count()).Count(r => r.Count == queries[i][1]);
+
+                            if (cnt > 0)                                
+                                output.Add(1);
+                            else
+                                output.Add(0);
+                            break;
+                        }
+                    default:
+                        break;
+                }            
+
+            }
+            return output;
+        }
+
     }
 }
