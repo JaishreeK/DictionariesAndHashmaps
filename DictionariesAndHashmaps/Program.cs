@@ -71,49 +71,94 @@ namespace DictionariesAndHashmaps
         // Complete the freqQuery function below.
         public static List<int> freqQuery(List<int[]> queries)
         {
-            List<int> resultArray = new List<int>();
+            Dictionary<int, int> resultDict = new Dictionary<int, int>();
+            Dictionary<int, int> freqDict = new Dictionary<int, int>();
             List<int> output = new List<int>();
-            for (int i=0;i<queries.Count;i++)
+
+            for (int i = 0; i < queries.Count; i++)
             {
+                int op= queries[i][0];
+                int num = queries[i][1];
+                int freq, newFreq;
                 //switch 1,2,3
-                switch(queries[i][0])
+                switch (op)
                 {
+                    case 3:
+                        {
+                            if (num == 0)
+                                output.Add(1);
+                            else
+                                if (freqDict.ContainsKey(num))
+                                output.Add(1);
+                            else
+                                output.Add(0);
+
+                            break;
+                        }
                     case 1:
                         {
-                            resultArray.Add(queries[i][1]);
+                            if (resultDict.ContainsKey(num))
+                            {
+                                freq = resultDict[num];
+                                resultDict[num]++;
+                            }
+                            else
+                            {
+                                freq = 0;
+                                resultDict.Add(num, 1);
+                            }
+                            //remove old freq 
+                            if (freq > 0)
+                            {
+                                if (freqDict.ContainsKey(freq))
+                                {
+                                    if (freqDict[freq] > 1)
+                                        freqDict[freq]--;
+                                    else
+                                        freqDict.Remove(freq);
+                                }
+                            }
+                            //add new freq
+                            newFreq = freq + 1;
+                            if (freqDict.ContainsKey(newFreq))
+                                freqDict[newFreq]++;
+                            else
+                                freqDict.Add(newFreq, 1);
                             break;
                         }
                     case 2:
                         {
-                            if (resultArray.Contains(queries[i][1]))
-                                resultArray.Remove(queries[i][1]);
+                            if (resultDict.ContainsKey(num))
+                            {
+                                freq = resultDict[num];
+                                if (freq > 1)
+                                    resultDict[num]--;
+                                else
+                                    resultDict.Remove(num);
+
+                                newFreq = freq - 1;
+                                if (newFreq > 0)
+                                    //add new freq
+                                    if (freqDict.ContainsKey(newFreq))
+                                        freqDict[newFreq]++;
+                                    else
+                                        freqDict.Add(newFreq, 1);
+
+                                //remove old freq
+                                if (freq > 0)
+                                    if (freqDict.ContainsKey(freq))
+                                    {
+                                        if (freqDict[freq] > 1)
+                                            freqDict[freq]--;
+                                        else
+                                            freqDict.Remove(freq);
+                                    }
+                            }
                             break;
                         }
-                    case 3:
-                        {
-                            var intCount =  from values in resultArray group values by values into g
-                                            select new { g.Key, Count = g.Count() };
 
-                            //foreach (var item in intCount)
-                            //{
-                            //    if (item.Count == queries[i][1])
-                            //    {
-                            //        flag = true;
-                            //        break;
-                            //    }
-                            //}
-                            int cnt = intCount.Take(intCount.Count()).Count(r => r.Count == queries[i][1]);
 
-                            if (cnt > 0)                                
-                                output.Add(1);
-                            else
-                                output.Add(0);
-                            break;
-                        }
-                    default:
-                        break;
-                }            
-
+                }
             }
             return output;
         }

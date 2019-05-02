@@ -55,32 +55,57 @@ namespace UnitTestProject1
 //1 16
 //3 1
 
+//            10
+//1 3
+//2 3
+//3 2
+//1 4
+//1 5
+//1 5
+//1 4
+//3 2
+//2 4
+//3 2
+
         [TestMethod]
         public void TestFreqQuery()
-        {
-            // 6 3
-            long r = 3;
-            List<int[]> input1 = new List<int[]>() {new int[]{3,4}, new int[2]{2,1003},
-                                                             new int[2]{1,16},
-                                                             new int[2]{3,1}
-                                                            };
+        {           
+            //List<int[]> input1 = new List<int[]>() {
+            //                                        new int[2]{3,4},
+            //                                        new int[2]{2,1003},
+            //                                        new int[2]{1,16},
+            //                                        new int[2]{3,1}
+            //                                        };
+
+            List<int[]> input1 = new List<int[]>() {
+                                                    new int[2]{1,3},
+                                                    new int[2]{2,3},
+                                                    new int[2]{3,2},
+                                                    new int[2]{1,4},
+                                                    new int[2]{1,5},
+                                                    new int[2]{1,5},
+                                                    new int[2]{1,4},
+                                                    new int[2]{3,2},
+                                                    new int[2]{2,4},
+                                                    new int[2]{3,2}
+                                                    };
 
             //Output:6
             List<int> result = Program.freqQuery(input1);
-            for (int i = 0; i < q; i++)
-            {
-                int[] query = new int[2];
+            //for (int i = 0; i < q; i++)
+            //{
+            //    int[] query = new int[2];
 
-                var p = new Regex("^(\\d+)\\s+(\\d+)\\s*$");
-                var m = p.Match(System.Console.ReadLine());
-                if (m.Success)
-                {
-                    query[0] = int.Parse(m.Groups[1].Value);
-                    query[1] = int.Parse(m.Groups[2].Value);
-                    queries.add(query);
-                }
+            //    var p = new Regex("^(\\d+)\\s+(\\d+)\\s*$");
+            //    var m = p.Match(System.Console.ReadLine());
+            //    if (m.Success)
+            //    {
+            //        query[0] = int.Parse(m.Groups[1].Value);
+            //        query[1] = int.Parse(m.Groups[2].Value);
+            //        queries.add(query);
+            //    }
 
-                Assert.AreEqual(new List<int>() { 0, 1 }, result);
+                Assert.AreEqual(new List<int>() { 0, 1,1 }, result);
             }
         }
 }
