@@ -12,6 +12,31 @@ namespace DictionariesAndHashmaps
             Console.WriteLine("Hello World!");
         }
 
+        //The substrings  and  are common to both strings.
+        // Complete the twoStrings function below.
+        public static string twoStrings(string s1, string s2)
+        {
+            var returnStr = "NO";
+            Dictionary<char, int> s1CharDict = new Dictionary<char, int>();
+            foreach (var char1 in s1)
+            {
+                if (s1CharDict.ContainsKey(char1))
+                    s1CharDict[char1] += 1;
+                else
+                    s1CharDict.Add(char1, 1);
+
+            }
+            foreach (var char2 in s2)
+            {
+                if (s1CharDict.ContainsKey(char2))
+                {
+                    returnStr = "YES";
+                    break;
+                }
+            }
+            return returnStr;
+        }
+
         //4 2
         //1 2 2 4
         //Output:2
@@ -161,6 +186,71 @@ namespace DictionariesAndHashmaps
                 }
             }
             return output;
+        }
+
+        //        1
+        //cdcd
+        // Complete the sherlockAndAnagrams function below.
+        public static int sherlockAndAnagrams(string s)
+        {
+            int AnagramCount = 0;
+            int strLength = s.Length;
+            string temp2, temp;
+            Dictionary<string, string> strCuts = new Dictionary<string, string>();
+
+            // TODO: similarly we have to do for 2,3..until n-1 characters where n is the length of the string
+            for (int cnt = 1; cnt < strLength; cnt++)
+            {
+                string indexes = "";
+                for (int k = 0; k < strLength; k++)
+                {
+                    if (strLength - k >= cnt)
+                    {
+                        temp = s.Substring(k, cnt);
+                        indexes = k.ToString() + "," + cnt.ToString();
+                        strCuts.Add(indexes, temp);
+                    }
+                }
+            }
+            foreach (var key in strCuts.Keys)
+            {
+                string[] IndexnCnt = key.Split(',');
+                int cnt = Int32.Parse(IndexnCnt[1]);
+                int stIndex = Int32.Parse(IndexnCnt[0]);
+                for (int i = stIndex + 1; i < strLength; i++)
+                {
+                    if (strLength - i >= cnt)
+                    {
+                        temp = strCuts[key]; ;
+                        temp2 = s.Substring(i, cnt);
+                        if (Check_Anagram(temp, temp2))
+                            AnagramCount++;
+                    }
+                    else
+                        break;
+                }
+            }
+            return AnagramCount;
+        }
+
+        public static bool Check_Anagram(string temp, string temp2)
+        {
+            if (temp.Length != temp2.Length)
+                return false;
+
+            
+            List<char> tempList1 = new List<char>(temp.ToCharArray());
+            List<char> tempList2 = new List<char>(temp2.ToCharArray());
+                       
+            return tempList1.OrderBy(x => x).SequenceEqual(tempList2.OrderBy(y => y));
+
+            //string resultTemp = new string(tempChars);
+            //string resultTemp2 = new string(temp2Chars);
+
+            //if (resultTemp == resultTemp2)
+            //return true;
+            //else
+            //    return false;
         }
 
     }
