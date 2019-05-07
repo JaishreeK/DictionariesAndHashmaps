@@ -188,17 +188,84 @@ namespace DictionariesAndHashmaps
             return output;
         }
 
+        //    from collections import Counter
+        //    def sherlockAndAnagrams(s):
+        //    count = 0
+        //    for i in range(1, len(s)+1) :
+        //        a = ["".join(sorted(s[j: j + i])) for j in range(len(s) - i + 1)]
+        //        b = Counter(a)
+        //        for j in b:
+        //            count+=b[j]*(b[j]-1)/2
+        //    return int (count)
+
+
+//        static int sherlockAndAnagrams(string s)
+//        {
+//            var matches = 0;
+
+//            for (int i = 1; i <= s.Length - 1; i++)
+//            {
+//                var a = new List<string>();
+
+//                for (int j = 0; j <= s.Length - i; j++)
+//                {
+//                    a.Add(new string(s.Substring(j, i).OrderBy(c => c).ToArray()));
+//                }
+
+//                var b = (from c in a
+//                         group c by c into g
+//                         select
+//new { Key = g.Key, Count = g.Count() })
+//                        .ToDictionary(g => g.Key, g => g.Count);
+
+//                foreach (var v in b.Values)
+//                {
+//                    matches += v * (v - 1) / 2;
+//                }
+//            }
+
+//            return matches;
+//        }
+
         //        1
         //cdcd
         // Complete the sherlockAndAnagrams function below.
         public static int sherlockAndAnagrams(string s)
         {
             int AnagramCount = 0;
+            int strLength = s.Length;           
+           
+                       
+            for (int cnt = 1; cnt < strLength; cnt++)
+            {
+                List<string> strCuts = new List<string>();
+
+                for (int k = 0; k < strLength; k++)
+                {        
+                    strCuts.Add(new string(s.Substring(k, cnt).OrderBy(c => c).ToArray()));                    
+                }
+
+
+                var b = (from c in strCuts
+                         group c by c into g
+                         select new { g.Key, Count = g.Count() })
+                            .ToDictionary(g => g.Key, g => g.Count);
+               
+                foreach (var value in b.Values)
+                {
+                    AnagramCount += value * (value - 1) / 2;
+                }
+            }
+            return AnagramCount;
+        }
+
+        // Complete the sherlockAndAnagrams function below.
+        static int sherlockAndAnagrams(string s)
+        {
+            int AnagramCount = 0;
             int strLength = s.Length;
             string temp2, temp;
             Dictionary<string, string> strCuts = new Dictionary<string, string>();
-
-            // TODO: similarly we have to do for 2,3..until n-1 characters where n is the length of the string
             for (int cnt = 1; cnt < strLength; cnt++)
             {
                 string indexes = "";
