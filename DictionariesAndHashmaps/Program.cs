@@ -260,7 +260,7 @@ namespace DictionariesAndHashmaps
         }
 
         // Complete the sherlockAndAnagrams function below.
-        static int sherlockAndAnagrams(string s)
+        static int sherlockAndAnagrams2(string s)
         {
             int AnagramCount = 0;
             int strLength = s.Length;
