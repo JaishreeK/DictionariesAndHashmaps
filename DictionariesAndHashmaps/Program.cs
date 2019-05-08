@@ -320,5 +320,136 @@ namespace DictionariesAndHashmaps
             //    return false;
         }
 
+
+      //Hacker Rank Code for FreqQuery, final one which worked and passed all the tests
+      // Complete the freqQuery function below.
+        //static List<int> freqQuery(int[,] queries)
+        //{
+        //    Dictionary<int, int> resultDict = new Dictionary<int, int>();
+        //    Dictionary<int, int> freqDict = new Dictionary<int, int>();
+        //    List<int> output = new List<int>();
+        //    int rowCount = queries.GetLength(0);
+        //    for (int i = 0; i < rowCount; i++)
+        //    {
+        //        int op = queries[i, 0];
+        //        int num = queries[i, 1];
+        //        int freq = 0, newFreq;
+        //        //switch 1,2,3
+        //        switch (op)
+        //        {
+        //            case 3:
+        //                {
+        //                    if (num == 0)
+        //                        output.Add(1);
+        //                    else
+        //                        if (freqDict.ContainsKey(num))
+        //                        output.Add(1);
+        //                    else
+        //                        output.Add(0);
+
+        //                    break;
+        //                }
+        //            case 1:
+        //                {
+        //                    if (resultDict.ContainsKey(num))
+        //                    {
+        //                        freq = resultDict[num];
+        //                        resultDict[num]++;
+        //                    }
+        //                    else
+        //                    {
+        //                        resultDict.Add(num, 1);
+        //                    }
+        //                    //remove old freq 
+        //                    if (freq > 0)
+        //                    {
+        //                        if (freqDict.ContainsKey(freq))
+        //                        {
+        //                            if (freqDict[freq] > 1)
+        //                                freqDict[freq]--;
+        //                            else
+        //                                freqDict.Remove(freq);
+        //                        }
+        //                    }
+        //                    //add new freq
+        //                    newFreq = freq + 1;
+        //                    if (freqDict.ContainsKey(newFreq))
+        //                        freqDict[newFreq]++;
+        //                    else
+        //                        freqDict.Add(newFreq, 1);
+        //                    break;
+        //                }
+        //            case 2:
+        //                {
+        //                    if (resultDict.ContainsKey(num))
+        //                    {
+        //                        freq = resultDict[num];
+        //                        if (freq > 1)
+        //                            resultDict[num]--;
+        //                        else
+        //                            resultDict.Remove(num);
+
+        //                        newFreq = freq - 1;
+        //                        if (newFreq > 0)
+        //                            //add new freq
+        //                            if (freqDict.ContainsKey(newFreq))
+        //                                freqDict[newFreq]++;
+        //                            else
+        //                                freqDict.Add(newFreq, 1);
+
+        //                        //remove old freq
+        //                        if (freq > 0)
+        //                            if (freqDict.ContainsKey(freq))
+        //                            {
+        //                                if (freqDict[freq] > 1)
+        //                                    freqDict[freq]--;
+        //                                else
+        //                                    freqDict.Remove(freq);
+        //                            }
+        //                    }
+        //                    break;
+        //                }
+
+        //        }
+        //    }
+        //    return output;
+        //}
+
+        //static void Main(string[] args)
+        //{
+        //    TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
+
+        //    int q = Convert.ToInt32(Console.ReadLine().Trim());
+
+        //    int[,] queries = new int[q, 2];
+        //    /*var p  = new Regex("^(\\d+)\\s+(\\d+)\\s*$");
+        //    for (int i = 0; i < q; i++) 
+        //    {
+        //        int[] query = new int[2];
+        //        var m = p.Match(Console.ReadLine());
+        //        if (m.Success) 
+        //        {
+        //            query[0] = int.Parse(m.Groups[1].Value);
+        //            query[1] = int.Parse(m.Groups[2].Value);
+        //            queries.Add(query);
+        //        }
+        //    } */
+
+        //    string[] queryTemp = new string[q];
+        //    for (int i = 0; i < q; i++)
+        //    {
+        //        queryTemp = Console.ReadLine().Split(' ');
+        //        for (int j = 0; j < 2; j++)
+        //        {
+        //            queries[i, j] = Convert.ToInt32(queryTemp[j]);
+        //        }
+        //    }
+        //    List<int> ans = freqQuery(queries);
+
+        //    textWriter.WriteLine(String.Join("\n", ans));
+
+        //    textWriter.Flush();
+        //    textWriter.Close();
+        //}
     }
 }
